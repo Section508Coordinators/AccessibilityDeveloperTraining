@@ -1,0 +1,40 @@
+name: Build and Package Storybook
+
+on:
+  workflow_dispatch: # This makes it manually triggerable from GitHub UI
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        working-directory: ./storybook
+        run: npm install
+
+      - name: Build Storybook
+        working-directory: ./storybook
+        run: npm run build-storybook
+
+      - name: Create Zip Archive
+        working-directory: ./storybook
+        run: zip -r storybook-static.zip storybook-static/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./storybook/storybook-static.zip
+          tag_name: storybook-${{ github.run_number }}
+          name: Storybook Build ${{ github.run_number }}
+          body: Automated Storybook build
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
