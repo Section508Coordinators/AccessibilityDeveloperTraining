@@ -18,7 +18,7 @@ This template ships with the main React and Storybook configuration files you'll
 
     ```shell
     # Clone the template
-    npx degit chromaui/intro-storybook-react-template taskbox
+    npx degit chromaui/intro-storybook-react-template storybook
     ```
 
 1.  **Install the dependencies.**
@@ -27,7 +27,7 @@ This template ships with the main React and Storybook configuration files you'll
 
     ```shell
     # Navigate to the directory
-    cd taskbox/
+    cd storybook/
 
     # Install the dependencies
     yarn
