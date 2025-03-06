@@ -46,26 +46,80 @@ export const ColorContrastDemo = ({
     padding: '20px',
     margin: '20px',
   };
+  const descriptionStyle = {
+    backgroundColor,
+    padding: '10px',
+    margin: '10px',
+  };
 
   const headingStyle = {
     color: textColor,
   };
 
   const contrastRatio = getContrastRatio(textColor, backgroundColor);
+  const passFailStyle = {
+    ...headingStyle,
+    color: '#000000',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    display: 'inline-block',
+  };
+  const passStyle = {
+    ...passFailStyle,
+    backgroundColor: '#90EE90',
+  };
+  const failStyle = {
+    ...passFailStyle,
+    backgroundColor: '#FFB6C1',
+  };
 
   return (
-    <div style={containerStyle}>
-      <h1 style={headingStyle}>Heading Level 1</h1>
-      <p style={headingStyle}>Contrast ratio: {contrastRatio}</p>
+    <>
+      <div style={descriptionStyle}>
+        <p>
+          In general, a contrast ratio of <strong>4.5:1</strong> is the minimum
+          for text and background color.
+        </p>
+        <h1>Large Text</h1>
+        <p>
+          Large text is <strong>18px</strong> or <strong>1.125rem</strong> or{' '}
+          <strong>14pt</strong> bolded text and must have a ratio of{' '}
+          <strong>3:1</strong>
+        </p>
+      </div>
+      <div style={containerStyle}>
+        <h1 style={headingStyle}>Heading Level 1</h1>
+        <p>
+          Contrast ratio: {contrastRatio}:1{' '}
+          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
+            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
+          </span>
+        </p>
 
-      <h2 style={headingStyle}>Heading Level 2</h2>
-      <p style={headingStyle}>Contrast ratio: {contrastRatio}</p>
+        <h2 style={headingStyle}>Heading Level 2</h2>
+        <p>
+          Contrast ratio: {contrastRatio}:1{' '}
+          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
+            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
+          </span>
+        </p>
 
-      <h3 style={headingStyle}>Heading Level 3</h3>
-      <p style={headingStyle}>Contrast ratio: {contrastRatio}</p>
+        <h3 style={headingStyle}>Heading Level 3</h3>
+        <p>
+          Contrast ratio: {contrastRatio}:1{' '}
+          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
+            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
+          </span>
+        </p>
 
-      <h4 style={headingStyle}>Heading Level 4</h4>
-      <p style={headingStyle}>Contrast ratio: {contrastRatio}</p>
-    </div>
+        <h4 style={headingStyle}>Heading Level 4</h4>
+        <p>
+          Contrast ratio: {contrastRatio}:1{' '}
+          <span style={Number(contrastRatio) >= 4.5 ? passStyle : failStyle}>
+            {Number(contrastRatio) >= 4.5 ? 'Pass' : 'Fail'}
+          </span>
+        </p>
+      </div>
+    </>
   );
 };
