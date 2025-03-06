@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="storybook_scorm" version="1.2">
+    <metadata>
+        <schema>ADL SCORM</schema>
+        <schemaversion>1.2</schemaversion>
+    </metadata>
+    <organizations default="org1">
+        <organization identifier="org1">
+            <title>Storybook SCORM</title>
+            <item identifier="item1" identifierref="resource1">
+                <title>Storybook UI</title>
+            </item>
+        </organization>
+    </organizations>
+    <resources>
+        <resource identifier="resource1" type="webcontent" href="index.html">
+            <file href="index.html"/>
+            <file href="storybook-static/index.html"/>
+        </resource>
+    </resources>
+</manifest>
