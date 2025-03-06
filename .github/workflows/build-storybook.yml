@@ -23,17 +23,23 @@ jobs:
         working-directory: ./storybook
         run: npm run build-storybook
 
+      - name: Move Storybook static to SCORM folder
+        run: |
+          mv ./storybook/storybook-static ./storybook-scorm/
+
       - name: Create Zip Archive
-        working-directory: ./storybook
-        run: zip -r storybook-static.zip storybook-static/
+        working-directory: ./
+        run: |
+          cd storybook-scorm
+          zip -r ../storybook-scorm.zip ./*
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ./storybook/storybook-static.zip
+          files: ./storybook-scorm.zip
           tag_name: storybook-${{ github.run_number }}
-          name: Storybook Build ${{ github.run_number }}
-          body: Automated Storybook build
+          name: Storybook SCORM Build ${{ github.run_number }}
+          body: Automated Storybook SCORM package build
           draft: false
           prerelease: false
         env:
