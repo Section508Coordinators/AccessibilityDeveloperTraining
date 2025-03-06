@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Function to calculate relative luminance
 const getLuminance = (r: number, g: number, b: number) => {
   const [rs, gs, bs] = [r, g, b].map((c) => {
@@ -37,88 +39,226 @@ interface ColorContrastDemoProps {
   backgroundColor: string;
 }
 
+// Add new component for contrast info
+const ContrastInfo = ({
+  contrastRatio,
+  requiredRatio,
+  fontSize,
+  weight,
+}: {
+  contrastRatio: string;
+  requiredRatio: number;
+  fontSize?: { em: number; rem: number; px: number };
+  weight?: number;
+}) => {
+  const descriptionStyle = {
+    backgroundColor: '#ffffff',
+    padding: '10px',
+    margin: '10px',
+  };
+
+  const passStyle = {
+    ...descriptionStyle,
+    backgroundColor: '#90EE90',
+  };
+  const failStyle = {
+    ...descriptionStyle,
+    backgroundColor: '#FFB6C1',
+  };
+
+  return (
+    <p style={descriptionStyle}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '8px',
+        }}
+      >
+        <span>
+          Current contrast ratio: <strong>{contrastRatio}</strong>:1
+        </span>
+        <span
+          style={Number(contrastRatio) >= requiredRatio ? passStyle : failStyle}
+        >
+          <strong>
+            {Number(contrastRatio) >= requiredRatio ? 'Pass' : 'Fail'}
+          </strong>
+        </span>
+      </div>
+      <div>
+        Required contrast ratio: <strong>{requiredRatio}</strong>:1
+      </div>
+      {fontSize && weight && (
+        <div>
+          Font size: <strong>{fontSize.em}</strong>em /{' '}
+          <strong>{fontSize.rem}</strong>rem / <strong>{fontSize.px}</strong>px
+          • Font weight: <strong>{weight}</strong>
+        </div>
+      )}
+    </p>
+  );
+};
+
 export const ColorContrastDemo = ({
   textColor = '#000000',
   backgroundColor = '#ffffff',
 }: ColorContrastDemoProps) => {
   const containerStyle = {
-    backgroundColor,
     padding: '20px',
     margin: '20px',
   };
+
   const descriptionStyle = {
-    backgroundColor,
+    backgroundColor: '#ffffff',
     padding: '10px',
     margin: '10px',
   };
 
   const headingStyle = {
+    backgroundColor,
     color: textColor,
+    display: 'inline-block',
+    padding: '0 8px',
   };
 
   const contrastRatio = getContrastRatio(textColor, backgroundColor);
-  const passFailStyle = {
-    ...headingStyle,
-    color: '#000000',
-    padding: '4px 8px',
-    borderRadius: '4px',
-    display: 'inline-block',
-  };
-  const passStyle = {
-    ...passFailStyle,
-    backgroundColor: '#90EE90',
-  };
-  const failStyle = {
-    ...passFailStyle,
-    backgroundColor: '#FFB6C1',
-  };
+
+  const headings = [
+    {
+      level: 1,
+      text: 'Heading Level 1',
+      requiredRatio: 3,
+      fontSize: { em: 2, rem: 2, px: 32 },
+      weight: 700,
+    },
+    {
+      level: 2,
+      text: 'Heading Level 2',
+      requiredRatio: 3,
+      fontSize: { em: 1.5, rem: 1.5, px: 24 },
+      weight: 700,
+    },
+    {
+      level: 3,
+      text: 'Heading Level 3',
+      requiredRatio: 3,
+      fontSize: { em: 1.17, rem: 1.17, px: 18.72 },
+      weight: 700,
+    },
+    {
+      level: 4,
+      text: 'Heading Level 4',
+      requiredRatio: 4.5,
+      fontSize: { em: 1, rem: 1, px: 16 },
+      weight: 700,
+    },
+  ];
+
+  // Add color information display
+  const ColorInfo = ({ label, color }: { label: string; color: string }) => (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        margin: '8px 0',
+      }}
+    >
+      <div
+        style={{
+          width: '24px',
+          height: '24px',
+          backgroundColor: color,
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+        }}
+      />
+      <span>
+        {label}: <code>{color}</code>
+      </span>
+      <button
+        onClick={() => navigator.clipboard.writeText(color)}
+        style={{
+          padding: '4px 8px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          background: 'white',
+          cursor: 'pointer',
+        }}
+      >
+        Copy
+      </button>
+    </div>
+  );
 
   return (
     <>
       <div style={descriptionStyle}>
         <p>
-          In general, a contrast ratio of <strong>4.5:1</strong> is the minimum
-          for text and background color.
+          <strong>WCAG 2.1 Contrast Requirements:</strong>
         </p>
-        <h1>Large Text</h1>
+        <h2>Standard Text (Level AA)</h2>
         <p>
-          Large text is <strong>18px</strong> or <strong>1.125rem</strong> or{' '}
-          <strong>14pt</strong> bolded text and must have a ratio of{' '}
-          <strong>3:1</strong>
+          Text and images of text must maintain a contrast ratio of at least{' '}
+          <strong>4.5:1</strong> against their background.
         </p>
+        <h2>Large-Scale Text (Level AA)</h2>
+        <p>
+          Large-scale text (defined as <strong>24px</strong> /{' '}
+          <strong>1.5rem</strong> or <strong>18.66px</strong> /{' '}
+          <strong>1.17rem</strong> if bold) requires a minimum contrast ratio of{' '}
+          <strong>3:1</strong>.
+        </p>
+        <p>
+          <strong>Technical Notes:</strong>
+        </p>
+        <ul>
+          <li>
+            Bold text = <code>font-weight: 700</code> or higher
+          </li>
+          <li>Font sizes are calculated using a base of 16px = 1rem</li>
+          <li>Contrast ratio is calculated as (L1 + 0.05) / (L2 + 0.05)</li>
+          <li>Text over gradients must maintain minimum contrast throughout</li>
+        </ul>
+        <div style={{ margin: '16px 0' }}>
+          <ColorInfo label="Text Color" color={textColor} />
+          <ColorInfo label="Background Color" color={backgroundColor} />
+        </div>
       </div>
       <div style={containerStyle}>
-        <h1 style={headingStyle}>Heading Level 1</h1>
-        <p>
-          Contrast ratio: {contrastRatio}:1{' '}
-          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
-            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
-          </span>
+        {headings.map((heading) => (
+          <div key={heading.level}>
+            {React.createElement(
+              `h${heading.level}`,
+              { style: headingStyle },
+              heading.text
+            )}
+            <ContrastInfo
+              contrastRatio={contrastRatio}
+              requiredRatio={heading.requiredRatio}
+              fontSize={heading.fontSize}
+              weight={heading.weight}
+            />
+            <hr />
+          </div>
+        ))}
+        <p style={headingStyle}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
         </p>
-
-        <h2 style={headingStyle}>Heading Level 2</h2>
-        <p>
-          Contrast ratio: {contrastRatio}:1{' '}
-          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
-            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
-          </span>
-        </p>
-
-        <h3 style={headingStyle}>Heading Level 3</h3>
-        <p>
-          Contrast ratio: {contrastRatio}:1{' '}
-          <span style={Number(contrastRatio) >= 3 ? passStyle : failStyle}>
-            {Number(contrastRatio) >= 3 ? 'Pass' : 'Fail'}
-          </span>
-        </p>
-
-        <h4 style={headingStyle}>Heading Level 4</h4>
-        <p>
-          Contrast ratio: {contrastRatio}:1{' '}
-          <span style={Number(contrastRatio) >= 4.5 ? passStyle : failStyle}>
-            {Number(contrastRatio) >= 4.5 ? 'Pass' : 'Fail'}
-          </span>
-        </p>
+        <ContrastInfo
+          contrastRatio={contrastRatio}
+          requiredRatio={4.5}
+          fontSize={{ em: 1, rem: 1, px: 16 }}
+          weight={400}
+        />
       </div>
     </>
   );
