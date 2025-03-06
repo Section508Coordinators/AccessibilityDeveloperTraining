@@ -11,6 +11,7 @@
 # production
 /build
 /storybook-static
+**/storybook-static
 /storybook/build
 /storybook/storybook-static
 # misc

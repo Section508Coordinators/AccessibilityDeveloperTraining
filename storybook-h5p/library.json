@@ -1,0 +1,11 @@
+{
+  "title": "Storybook Viewer",
+  "machineName": "H5P.Storybook",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "preloadedDependencies": [],
+  "preloadedJs": [],
+  "preloadedCss": []
+}
