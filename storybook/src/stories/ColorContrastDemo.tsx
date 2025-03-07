@@ -37,6 +37,8 @@ const getContrastRatio = (color1: string, color2: string) => {
 interface ColorContrastDemoProps {
   textColor: string;
   backgroundColor: string;
+  paragraphFontSize: number;
+  paragraphFontWeight: number;
 }
 
 // Add new component for contrast info
@@ -92,9 +94,16 @@ const ContrastInfo = ({
       </div>
       {fontSize && weight && (
         <div>
-          Font size: <strong>{fontSize.em}</strong>em /{' '}
-          <strong>{fontSize.rem}</strong>rem / <strong>{fontSize.px}</strong>px
-          • Font weight: <strong>{weight}</strong>
+          <ul>
+            <li>
+              Font size: <strong>{fontSize.em}</strong>em /{' '}
+              <strong>{fontSize.rem}</strong>rem /{' '}
+              <strong>{fontSize.px}</strong>px
+            </li>
+            <li>
+              Font weight: <strong>{weight}</strong>
+            </li>
+          </ul>
         </div>
       )}
     </p>
@@ -104,6 +113,8 @@ const ContrastInfo = ({
 export const ColorContrastDemo = ({
   textColor = '#000000',
   backgroundColor = '#ffffff',
+  paragraphFontSize = 16,
+  paragraphFontWeight = 400,
 }: ColorContrastDemoProps) => {
   const containerStyle = {
     padding: '20px',
@@ -244,7 +255,13 @@ export const ColorContrastDemo = ({
             <hr />
           </div>
         ))}
-        <p style={headingStyle}>
+        <p
+          style={{
+            ...headingStyle,
+            fontSize: `${paragraphFontSize}px`,
+            fontWeight: `${paragraphFontWeight}`,
+          }}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -255,9 +272,18 @@ export const ColorContrastDemo = ({
         </p>
         <ContrastInfo
           contrastRatio={contrastRatio}
-          requiredRatio={4.5}
-          fontSize={{ em: 1, rem: 1, px: 16 }}
-          weight={400}
+          requiredRatio={
+            (paragraphFontSize > 18.66 && paragraphFontWeight >= 700) ||
+            paragraphFontSize >= 24
+              ? 3
+              : 4.5
+          }
+          fontSize={{
+            em: paragraphFontSize / 16,
+            rem: paragraphFontSize / 16,
+            px: paragraphFontSize,
+          }}
+          weight={paragraphFontWeight}
         />
       </div>
     </>

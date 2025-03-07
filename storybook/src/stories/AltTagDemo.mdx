@@ -1,0 +1,38 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as AltTagStories from './AltTagDemo.stories';
+
+<Meta of={AltTagStories} title="Images/Alt Tags" />
+
+# Alt Tag Best Practices
+
+Alt tags are essential for making images accessible to screen readers and when images fail to load. Here are some key guidelines:
+
+- Use empty alt tags (`alt=""`) for decorative images
+- Don't use phrases like "Image of" or "Picture of" - screen readers already announce that it's an image
+- Be concise but descriptive
+- Focus on the purpose and content of the image
+
+## Examples
+
+### Decorative Image
+
+When an image is purely decorative and doesn't convey meaningful content, use an empty alt tag:
+
+<Story name="Examples" args={{ altType: 'decorative' }} />
+
+```html
+<img src="../assets/find-dhs-form.png" alt="" />
+```
+
+### Descriptive Image
+
+When an image contains important information, provide a clear, concise description:
+
+<Story name="Examples" args={{ altType: 'descriptive' }} />
+
+```html
+<img
+  src="../assets/find-dhs-form.png"
+  alt="Hand holding a pen writing on a printed piece of paper"
+/>
+```
