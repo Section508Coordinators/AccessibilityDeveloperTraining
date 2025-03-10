@@ -3,36 +3,218 @@ import * as AltTagStories from './AltTagDemo.stories';
 
 <Meta of={AltTagStories} title="Images/Alt Tags" />
 
-# Alt Tag Best Practices
+# Alt Tags
+
+## Definition:
+Alternative text (alt text) is a critical component of web accessibility, providing textual descriptions of images for users who rely on screen readers. Properly written alt text ensures compliance with Section 508 and enhances usability for people with visual impairments.
+
+**Arrow Image** Every image must have an alt attribute, including: photos, informative images, logos, icons, infographics, etc. 
+
+## WCAG Guideline
+[Guideline 1.1 Text Alternative](https://www.w3.org/WAI/WCAG21/Understanding/text-alternatives): Provide text alternatives for any non-text content so that it can be changed into other forms people need, such as large print, braille, speech, symbols or simpler language. 
+
+The purpose of this guideline is to ensure that all non-text content is also available in text. 
+
+ **Remember**: Alt text is meant to be READ by an assistive technology. Keep that in mind when writing the text-how will this sound to someone when it is read aloud?
+
+## How to Code Alt Tags 
+Alt text uses the `alt` attribute of the `<img>` HTML tag.
+
+Example: 
+```html
+<img alt="99 red balloons">
+```
+
+## Use Cases:
+***Basic Image***: A basic image is usually a photo or illustration without complex data, text, or charts.
+
+**DOG IMAGE**
+**Checkmark** 
+```html
+<img src="example.jpg" alt="A golden retriever standing on rocks.">
+```
+**X IMAGE**
+```html
+<img src="example.jpg" alt="A happy dog named Brian.">
+```
+**ARROW IMAGE** 
+Descriptions should focus on details that are meaningful to the purpose of the content
+
+<hr/>
+**BEST PRACTICE**: There is no need to say “An image of…” before the description; screen readers add that information automatically 
+<hr/>
 
 Alt tags are essential for making images accessible to screen readers and when images fail to load. Here are some key guidelines:
 
-- Use empty alt tags (`alt=""`) for decorative images
-- Don't use phrases like "Image of" or "Picture of" - screen readers already announce that it's an image
-- Be concise but descriptive
-- Focus on the purpose and content of the image
+***Decorative Image***: Decorative images and icons don’t visually communicate meaningful content that would be lost if they were removed from the page. Any image that can be removed and does not impact the user’s understanding of the content should be considered decorative. 
 
-## Examples
+Decorative images should have null alt tags; this tells screen readers to skip them. 
 
-### Decorative Image
+**EXAMPLE TEXT IMAGE**
+**LAYOUT IMAGE**
 
-When an image is purely decorative and doesn't convey meaningful content, use an empty alt tag:
-
-<Story name="Examples" args={{ altType: 'decorative' }} />
-
+CHECK MARK 
 ```html
-<img src="../assets/find-dhs-form.png" alt="" />
+<img src="decorative.jpg" alt="">
+```
+X IMAGE
+```html
+<img src="decorative.jpg" alt="Blurry watercolor painting">
+```
+ARROW IMAGE Background images don’t have meaningful content and should not be described; they should be skipped by screen readers. 
+
+***Complex Images***: Complex images such as charts, graphs, or text should have a brief summary in the alt attribute and a detailed description in nearby text or via aria-describedby. ARIA-describedby can be used to map the long description with the image if the descriptive text is not directly before or after the image. 
+
+**Example**: Chart 
+CHART IMAGE
+TEXT OF CHART ALT
+
+CHECK MARK
+```html
+<img src="sales-chart.png" alt="Sales chart showing a 20% increase over Q3." aria-describedby="chart-description">
 ```
 
-### Descriptive Image
-
-When an image contains important information, provide a clear, concise description:
-
-<Story name="Examples" args={{ altType: 'descriptive' }} />
-
+X IMAGE
 ```html
-<img
-  src="../assets/find-dhs-form.png"
-  alt="Hand holding a pen writing on a printed piece of paper"
-/>
+<img src="sales-chart.png" alt="Sales chart.">
 ```
+
+ARROW IMAGE
+Don’t just say what an image is (sales chart), provide the meaning for the image. In the case of a chart, the goal isn’t to describe every aspect of the chart, but the provide a summary of what the chart is saying. If it is the goal to show every data point on a chart, there should be an alternative text table that lays this data out so that it can be fully read by a screen reader. 
+
+**Example**: Text as image 
+TEXT IMAGE
+
+CHECK MARK
+```HTML
+<img src="quote.png" alt="Quote: Whatever you are, be a good one.">
+```
+
+X IMAGE
+```html
+<img src="quote.png" alt="Quote.">
+```
+
+**Example**: Logos 
+Logos need alt text because they are informative. If the logo acts like a button or link, it still needs alt text. Write the text within the logo verbatim (without acronyms) in the alt tag. 
+
+LOGOS IMAGE
+In the example above, a web page lists several logos. The alt for the selected logo is: `alt=”Articulate logo”`
+
+HOMELAND SECURITY LOGO
+```html
+<img src=" /logo-wordmark-blue.svg" alt="U.S. Department of Homeland Security logo"> 
+```
+
+<hr/>
+**BEST PRACTICE**: In general, it is best to not render text as an image if the image is not a logo. Use CSS to style the text instead. 
+<hr/>
+***Images that are also links or buttons***: Clickable images should have alt text or be part of a clickable area that also includes HTML text that describes the image. 
+
+ARROW IMAGE
+Links in HTML, `<a>`, do NOT require an alt tag. Alt tags are for images only. This includes `<buttons>`, they should also not have alt tags 
+
+ARROW IMAGE 
+Never put links within alt text. Users cannot act upon text within an alt tag, it can only be read.
+<hr>
+### SVG Images:  
+- All <svg> elements use be set to role=”img” 
+- All non-decorative SVG images must have meaningful alt text via the title element, <title> 
+- The <title> element of an SVG must be associated with the image using aria-labelledby 
+- SVG elements should not be embedded via <object> or <iframe> 
+- All text elements within and SVG must be referenced in the alternative text of the <svg> or in a long description
+<hr>
+
+Best Practices for Writing Alt Text 
+
+ 
+
+ALT text should: 
+
+Present the content and function of the image 
+
+Be short and concise; no more than 250 characters 
+
+Never contain filenames or paths (00123.png; image.jpg) 
+
+Be Concise but Descriptive: Clearly describe the essential details of the image without unnecessary words. 
+
+✅ Good: alt="A steaming cup of coffee on a wooden table." 
+
+❌ Bad: alt="Image of a cup of coffee sitting on a table." 
+
+Avoid "Image of" or "Picture of": Screen readers already announce images. 
+
+✅ Better: alt="A laptop with an open code editor on the screen." 
+
+❌ Wrong: alt="Picture of a laptop displaying code." 
+
+Reflect the Context: Ensure the alt text aligns with the surrounding content and user intent. 
+
+✅ Example: If the image supports a news article about climate change, alt="A melting glacier in the Arctic." is more effective than alt="Ice and water." 
+
+Use Empty Alt for Decorative Images: If an image serves no functional purpose, use alt="" to prevent distractions for screen reader users. 
+
+Do Not Include Redundant or Irrelevant Text: Avoid unnecessary details that do not add value to understanding the content. 
+
+❌ Bad: alt="A cute dog with a red collar that was bought from the store last Tuesday." 
+
+✅ Good: alt="A happy golden retriever with a red collar." 
+
+For Functional Images, Describe Their Purpose: If an image is a button or link, indicate its function. 
+
+<img src="download-icon.png" alt="Download PDF document"> 
+
+Common Alt Text Mistakes and How to Fix Them 
+
+Mistake 
+
+Why It's a Problem 
+
+Corrected Example 
+
+alt="Image123.jpg" 
+
+File names are not descriptive 
+
+alt="Golden retriever running in the park" 
+
+alt="Icon" 
+
+Doesn't describe the function 
+
+alt="Search" for a magnifying glass icon 
+
+alt="Graph" 
+
+Too vague 
+
+alt="Bar graph showing quarterly revenue growth of 20%" 
+
+alt="Click here" 
+
+Doesn't convey purpose 
+
+alt="Download annual report PDF" 
+
+alt="" on meaningful images 
+
+Important information is lost 
+
+Provide a meaningful description 
+
+ 
+
+ 
+
+Learn More: 
+
+ 
+
+W3C Images Tutorial // [Images Tutorial](https://www.w3.org/WAI/tutorials/images/) | [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/tutorials/images/) | [W3C](https://www.w3.org/WAI/tutorials/images/) 
+
+ALT Tag Decision Tree // [An alt Decision Tree](https://www.w3.org/WAI/tutorials/images/decision-tree/) | [Web Accessibility Initiative (WAI)](https://www.w3.org/WAI/tutorials/images/decision-tree/) | [W3C](https://www.w3.org/WAI/tutorials/images/decision-tree/) 
+
+[Social Security Administration Guide: Alternate text for images](https://www.bing.com/ck/a?!&&p=99e13a91cbd336010f1ad0f5b54afd442b843f0686218a1e189d8e9ccc94f980JmltdHM9MTczODYyNzIwMA&ptn=3&ver=2&hsh=4&fclid=2e0772a5-73bc-633b-260d-672d72c26273&psq=social+security+guide+alternative+text+for+images&u=a1aHR0cHM6Ly93d3cuc3NhLmdvdi9hY2Nlc3NpYmlsaXR5L2ZpbGVzL1NTQV9BbHRlcm5hdGl2ZV9UZXh0X0d1aWRlLnBkZg&ntb=F) (PDF) Comprehensive guide about alt text 
+
+[Alternative Text guide from Web AIM](https://webaim.org/techniques/alttext/) 
