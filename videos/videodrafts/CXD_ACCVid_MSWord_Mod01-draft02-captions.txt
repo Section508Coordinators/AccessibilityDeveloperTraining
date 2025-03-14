@@ -1,0 +1,177 @@
+00:00:00:12 - 00:00:04:11
+You are watching How to Make anAccessible Document in Microsoft Word, 
+
+00:00:04:29 - 00:00:06:05
+Module 1:
+
+00:00:06:05 - 00:00:10:18
+Save as a Word Document ‘.docx’ with a Descriptive Filename. 
+
+00:00:11:12 - 00:00:14:29
+Please note, the keyboardshortcuts mentioned in this video series
+
+00:00:14:29 - 00:00:18:01
+are the standard shortcutsavailable in Microsoft Office
+
+00:00:18:01 - 00:00:21:01
+365 for Windows PCs.
+
+00:00:21:26 - 00:00:23:24
+Accessible Word documents must be
+
+00:00:23:24 - 00:00:27:06
+saved in the .docx format with a descriptive file
+
+00:00:27:06 - 00:00:30:06
+name that identifies your document or its purpose.
+
+00:00:30:13 - 00:00:34:24
+Descriptive file names help everyone, including people with disabilities,
+
+00:00:34:25 - 00:00:37:27
+locate, open, and switch between documents.
+
+00:00:39:11 - 00:00:41:20
+How to Test for Accessibility:
+
+00:00:41:20 - 00:00:44:03
+To test a document for accessibility,
+
+00:00:44:03 - 00:00:48:04
+find the document’s name in the title bar at the very top of the Microsoft Word
+
+00:00:48:04 - 00:00:51:16
+application window or in the File Explorer window.
+
+00:00:52:04 - 00:00:55:20
+Check to make sure the file name accurately identifies the document or its
+
+00:00:55:20 - 00:00:56:15
+purpose.
+
+00:00:56:15 - 00:01:00:18
+Also, make sure the document is saved in the ‘.docx’ file format.
+
+00:01:01:24 - 00:01:04:24
+Let's look at some inaccessible examples.
+
+00:01:04:29 - 00:01:08:23
+‘Document1.doc’ is not an accessible file,
+
+00:01:09:00 - 00:01:12:00
+because the file name is not descriptive, and it is not
+
+00:01:12:00 - 00:01:15:00
+saved in the proper ‘.docx’ format.
+
+00:01:15:24 - 00:01:19:11
+‘Application.docx’ is also inaccessible
+
+00:01:19:19 - 00:01:22:19
+because its file name is not descriptive.
+
+00:01:22:24 - 00:01:26:14
+‘Yesterdayslist.docm’ contains macros,
+
+00:01:26:14 - 00:01:29:14
+so it cannot be tested with these test instructions.
+
+00:01:30:15 - 00:01:33:15
+Now, let's look at some accessible examples.
+
+00:01:34:08 - 00:01:39:14
+‘OMB_Report387_2016_ v2.docx.,
+
+00:01:39:26 - 00:01:42:27
+‘Cell_Phone_Request_Application_2016
+
+00:01:43:07 - 00:01:48:25
+.docx’ and ‘AED_COP_Attendance_2016.docx’ 
+
+00:01:49:06 - 00:01:53:29
+are all considered accessible because the file names are descriptive,
+
+00:01:54:03 - 00:01:57:05
+and the files are saved in the ‘.docx’ format.
+
+00:01:57:21 - 00:02:00:10
+How to Author for Accessibility:
+
+00:02:00:10 - 00:02:03:08
+To save your document accessibly, open a new 
+
+00:02:03:08 - 00:02:06:08
+or existing document in Microsoft Word. 
+
+00:02:06:14 - 00:02:10:14
+Next, go to ‘File’ and select ‘Save as’.
+
+00:02:12:01 - 00:02:13:18
+In the 'File name’ field,
+
+00:02:13:18 - 00:02:16:18
+type a descriptive name for your document.
+
+00:02:16:19 - 00:02:18:27
+Then, in the dropdown menu below
+
+00:02:18:27 - 00:02:22:04
+the 'File name’ field, ensure the ‘Save as type’ field
+
+00:02:22:06 - 00:02:25:08
+is set to ‘Word Document (*.docx)’. 
+
+00:02:28:01 - 00:02:28:08
+Press
+
+00:02:28:08 - 00:02:31:08
+the ‘Enter’ key on your keyboard or click the ‘Save’ button
+
+00:02:31:08 - 00:02:34:08
+at the bottom of the dialog box to save your file.
+
+00:02:34:27 - 00:02:37:25
+How to Check Your Work: To check your work
+
+00:02:37:25 - 00:02:41:23
+look at the title bar at the very top of the Microsoft Word application
+
+00:02:41:23 - 00:02:42:26
+window.
+
+00:02:42:26 - 00:02:45:12
+Check to make sure the file name accurately identifies
+
+00:02:45:12 - 00:02:47:21
+the document or its purpose.
+
+00:02:47:21 - 00:02:50:06
+Also, make sure the document is saved
+
+00:02:50:06 - 00:02:53:06
+in the ‘.docx’ file format.
+
+00:02:53:16 - 00:02:55:27
+Thank you for watching Module 1.
+
+00:02:55:27 - 00:02:58:17
+Please watch the entire video series to learn
+
+00:02:58:17 - 00:03:01:27
+all the steps for authoring and testing accessible documents.
+
+00:03:02:10 - 00:03:05:03
+For more information about creating accessible documents
+
+00:03:05:03 - 00:03:09:13
+and other accessibility topics, visit Section508.gov.
+
+00:03:10:24 - 00:03:12:12
+This video is a product of
+
+00:03:12:12 - 00:03:16:24
+the Accessible Electronic DocumentCommunity of Practice and the U.S.
+
+00:03:16:24 - 00:03:18:12
+Department of Homeland Security.
+
